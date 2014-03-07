@@ -1,40 +1,55 @@
 package org.gameoflife;
 
+import org.gameoflife.exception.LifeException;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class GodTest {
 
+    public static final String GOD_NAME = "Stallman";
+    public static final String WORLD_NAME = "GNU";
+    private God god;
+
+    @Before
+    public void setUp() {
+        god = new God(GOD_NAME);
+    }
+
+    @Test
+    public void testGodName() {
+        assertEquals(GOD_NAME, god.getName());
+    }
+
     @Test
     public void worldCreationTest() {
-        God god = new God("Stallman");
-        god.createNewWorld("GNU");
-        assertEquals("GNU", god.getWorld().getName());
+        god.newWorld(WORLD_NAME);
+        assertEquals(WORLD_NAME, god.getWorld().getName());
     }
 
     @Test
     public void addCellTest() {
-        God god = new God("Stallman");
-        god.createNewWorld("GNU");
+        god.newWorld(WORLD_NAME);
         god.createNewCell();
-        assertEquals(1, god.getAliveFollowers().size());
+        assertEquals(1, god.getAliveFollowers());
+    }
+
+    @Test
+    public void cantCreateCellsWithoutWorld() {
+        try {
+            god.createNewCell();
+            assertTrue("Exception expected", false);
+        } catch (LifeException e) {
+            assertTrue(true);
+        }
     }
 
     @Test
     public void godTimeTest() {
-        God god = new God("Stallman");
         god.nextDay();
-        assertEquals(1, god.daysElapsed());
+        assertEquals(1, god.getDaysElapsed());
     }
-
-    @Test
-    public void cellDieBecauseInanitionTest() {
-        God god = new God("Stallman");
-        god.createNewWorld("GNU");
-        god.createNewCell();
-        god.nextDay();
-        assertEquals(0, god.getAliveFollowers().size());
-    }
-
 }
