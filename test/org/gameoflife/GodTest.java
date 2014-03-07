@@ -33,14 +33,14 @@ public class GodTest {
     @Test
     public void addCellTest() {
         god.newWorld(WORLD_NAME);
-        god.createNewCell();
+        god.createNewCell(0,0);
         assertEquals(1, god.getAliveFollowers());
     }
 
     @Test
     public void cantCreateCellsWithoutWorld() {
         try {
-            god.createNewCell();
+            god.createNewCell(0,0);
             assertTrue("Exception expected", false);
         } catch (LifeException e) {
             assertTrue(true);
