@@ -2,6 +2,8 @@ package org.gameoflife;
 
 import org.junit.Test;
 
+import static junit.framework.Assert.assertEquals;
+
 public class CellTest {
 
     @Test
@@ -23,6 +25,5 @@ public class CellTest {
         cell.kill();
         cell.resurrect();
         assertEquals(State.ALIVE, cell.getState());
-
     }
 }
