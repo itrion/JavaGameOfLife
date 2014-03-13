@@ -23,7 +23,7 @@ public class God {
 
     public void createNewCell(int coordenateX, int coordenateY) {
         if (world == null) throw new LifeException("Cannot create cell without a world");
-        world.putCell(new Cell());
+        world.putCell(new Cell(), new Coordenates(coordenateX, coordenateY));
     }
 
     public int getAliveFollowers() {
@@ -36,7 +36,8 @@ public class God {
     }
 
     private void updateWorld() {
-        world.getCells()[0].kill();
+        for (Cell cell : cells)
+            lifeRules.applyTo(cell);
     }
 
     public int getDaysElapsed() {

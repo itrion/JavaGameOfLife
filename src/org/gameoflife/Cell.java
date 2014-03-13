@@ -3,6 +3,7 @@ package org.gameoflife;
 public class Cell {
 
     private State state;
+    private Long id;
 
     public Cell() {
         this.state = State.ALIVE;
@@ -18,5 +19,9 @@ public class Cell {
 
     public void resurrect() {
         state = State.ALIVE;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

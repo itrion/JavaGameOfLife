@@ -1,6 +1,5 @@
 package org.gameoflife;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,8 +18,9 @@ public class World {
         return name;
     }
 
-    public void putCell(Cell cell) {
+    public void putCell(Cell cell, Coordenates coordenates) {
         cells.add(cell);
+        map.placeCell(coordenates, cell.getId());
     }
 
     public Cell[] getCells() {
