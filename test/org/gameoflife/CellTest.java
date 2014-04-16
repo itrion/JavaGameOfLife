@@ -3,6 +3,7 @@ package org.gameoflife;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
 
 public class CellTest {
 
@@ -16,7 +17,7 @@ public class CellTest {
     public void testCellDie(){
         Cell cell = new Cell();
         cell.kill();
-        assertEquals(State.DEAD, cell.getState());
+        assertEquals(true, cell.isDead());
     }
 
     @Test
@@ -24,6 +25,13 @@ public class CellTest {
         Cell cell = new Cell();
         cell.kill();
         cell.resurrect();
-        assertEquals(State.ALIVE, cell.getState());
+        assertEquals(true, cell.isAlive());
     }
+
+    @Test
+    public void newCellHasId(){
+        Cell cell = new Cell();
+        assertNotNull(cell.getId());
+    }
+
 }

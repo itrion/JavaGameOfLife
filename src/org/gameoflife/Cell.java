@@ -7,6 +7,7 @@ public class Cell {
 
     public Cell() {
         this.state = State.ALIVE;
+        this.id = System.nanoTime();
     }
 
     public State getState() {
@@ -27,5 +28,9 @@ public class Cell {
 
     public boolean isAlive() {
         return state == State.ALIVE;
+    }
+
+    public boolean isDead() {
+        return state == State.DEAD;
     }
 }
