@@ -28,9 +28,10 @@ public class God {
     }
 
     private void updateWorld() {
-        for (Cell cell : world.getCells())
-            if (!LifeRules.surviveNextDay(cell, world))
-                cell.kill();
+        for (Cell cell : world.getCells()){
+            if (GameOfLifeRules.resurrects(cell, world)) cell.resurrect();
+            else if(!GameOfLifeRules.surviveNextDay(cell, world)) cell.kill();
+        }
     }
 
     public int getDaysElapsed() {
@@ -51,6 +52,6 @@ public class God {
     }
 
     public void killCell(int coordinateX, int coordinateY) {
-
+        world.getCellAt(coordinateX, coordinateY).kill();
     }
 }
