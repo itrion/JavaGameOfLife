@@ -16,6 +16,7 @@ public class GodTest {
 
     @Before
     public void setUp() {
+        god = new God.Builder().withName(GOD_NAME).toWorld(WORLD_NAME).build();
         god = new God(GOD_NAME);
     }
 

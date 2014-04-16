@@ -24,4 +24,8 @@ public class Cell {
     public Long getId() {
         return id;
     }
+
+    public boolean isAlive() {
+        return state == State.ALIVE;
+    }
 }

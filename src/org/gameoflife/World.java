@@ -29,8 +29,16 @@ public class World {
 
     public int getAliveCells() {
         int aliveCells = 0;
-        for (Cell cell : cells) if (cell.getState().equals(State.ALIVE)) aliveCells++;
+        for (Cell cell : cells) if (cell.isAlive()) aliveCells++;
         return aliveCells;
+    }
+
+    public int getAliveNeighbours(Cell cell) {
+        int neighbours=0;
+        for (Cell cellInWorld: cells)
+            if (map.isNeighbour(cellInWorld.getId(), cell.getId()) && cellInWorld.isAlive())
+                neighbours++;
+        return neighbours;
     }
 
 

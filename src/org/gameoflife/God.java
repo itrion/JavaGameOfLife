@@ -9,11 +9,8 @@ public class God {
     private World world;
     private int daysElapsed;
 
-    public God(String name) {
+    public God(String name, String worldName) {
         this.name = name;
-    }
-
-    public void newWorld(String worldName) {
         this.world = new World(worldName, 20);
     }
 
@@ -36,8 +33,9 @@ public class God {
     }
 
     private void updateWorld() {
-        for (Cell cell : cells)
-            lifeRules.applyTo(cell);
+        for (Cell cell : world.getCells())
+            if (!LifeRules.surviveNextDay(cell, world))
+                cell.kill();
     }
 
     public int getDaysElapsed() {
@@ -60,5 +58,4 @@ public class God {
     public void killCell(int coordinateX, int coordinateY) {
 
     }
-
 }
