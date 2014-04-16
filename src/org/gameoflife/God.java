@@ -1,9 +1,5 @@
 package org.gameoflife;
 
-import org.gameoflife.exception.LifeException;
-
-import java.util.List;
-
 public class God {
     private final String name;
     private World world;
@@ -19,8 +15,7 @@ public class God {
     }
 
     public void createNewCell(int coordenateX, int coordenateY) {
-        if (world == null) throw new LifeException("Cannot create cell without a world");
-        world.putCell(new Cell(), new Coordenates(coordenateX, coordenateY));
+        world.putCell(new Cell(), new Coordinates(coordenateX, coordenateY));
     }
 
     public int getAliveFollowers() {

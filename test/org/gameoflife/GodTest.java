@@ -1,12 +1,9 @@
 package org.gameoflife;
 
-import org.gameoflife.exception.LifeException;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class GodTest {
 
@@ -16,8 +13,7 @@ public class GodTest {
 
     @Before
     public void setUp() {
-        god = new God.Builder().withName(GOD_NAME).toWorld(WORLD_NAME).build();
-        god = new God(GOD_NAME);
+        god = new God(GOD_NAME, WORLD_NAME);
     }
 
     @Test
@@ -27,25 +23,13 @@ public class GodTest {
 
     @Test
     public void worldCreationTest() {
-        god.newWorld(WORLD_NAME);
         assertEquals(WORLD_NAME, god.getWorld().getName());
     }
 
     @Test
     public void addCellTest() {
-        god.newWorld(WORLD_NAME);
         god.createNewCell(0,0);
         assertEquals(1, god.getAliveFollowers());
-    }
-
-    @Test
-    public void cantCreateCellsWithoutWorld() {
-        try {
-            god.createNewCell(0,0);
-            assertTrue("Exception expected", false);
-        } catch (LifeException e) {
-            assertTrue(true);
-        }
     }
 
     @Test
